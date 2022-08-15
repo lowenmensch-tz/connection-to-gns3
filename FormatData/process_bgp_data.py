@@ -71,8 +71,6 @@ class ProcessBGPData:
 
                 data[keys] = [dict_temporal_data]
                 dict_temporal_data = {}
-        print("-"*20)
-        print(data)
         return data
 
 
@@ -95,9 +93,19 @@ class ProcessBGPData:
             for value in values:
                 if isinstance(value, dict):
                     for key in keys_to_save:
-                        dict_temporal_data[key] = value[key]
+                        # network next_hop as_path 
+                        if key == "network":
+                            dict_temporal_data[key] = value[key]
+                            dict_temporal_data["tex_network"] = dict_temporal_data.pop(key)
+                        elif key == "next_hop":
+                            dict_temporal_data[key] = value[key]
+                            dict_temporal_data["tex_next_hop"] = dict_temporal_data.pop(key)
+                        else: 
+                            dict_temporal_data[key] = value[key]
+                            dict_temporal_data["tex_as_path"] = dict_temporal_data.pop(key)
 
                     temporal_data.append(dict_temporal_data)
+                    dict_temporal_data = {}
             
             new_data[keys] = temporal_data
             temporal_data = [{}]
