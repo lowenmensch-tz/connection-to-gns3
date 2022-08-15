@@ -38,8 +38,8 @@ CREATE TABLE Ports(
 CREATE TABLE BGP(
 	id SERIAL PRIMARY KEY, 
     id_device_fk BIGINT UNSIGNED UNIQUE NOT NULL COMMENT "Referencia hacia la entidad Device",
-    tex_description VARCHAR(100) NOT NULL COMMENT "Descripción del protocolo sobre el dispositivo",
-    sml_as SMALLINT NOT NULL COMMENT "AS del BGP",
+    tex_description VARCHAR(100) COMMENT "Descripción del protocolo sobre el dispositivo",
+    tex_as VARCHAR(5) NOT NULL COMMENT "AS del BGP",
     tex_router_id VARCHAR(15) NOT NULL COMMENT "router-id",
     
     FOREIGN KEY (id_device_fk) REFERENCES Device(id)

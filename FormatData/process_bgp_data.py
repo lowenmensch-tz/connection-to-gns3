@@ -67,11 +67,12 @@ class ProcessBGPData:
                 as_number = re.search(r"\d{5}", split_values[1]).group(0)
 
                 dict_temporal_data["tex_router_id"] = ipv4
-                dict_temporal_data["sml_as"] = int(as_number)
+                dict_temporal_data["tex_as"] = as_number
 
                 data[keys] = [dict_temporal_data]
                 dict_temporal_data = {}
-
+        print("-"*20)
+        print(data)
         return data
 
 
