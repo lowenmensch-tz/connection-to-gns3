@@ -71,11 +71,12 @@ CREATE TABLE BGPNetwork(
 
 CREATE TABLE LogBGPPeerConnectivity(
 	id SERIAL PRIMARY KEY,
+    id_bgp_fk BIGINT UNSIGNED NOT NULL COMMENT "Referencia hacia la entidad BGP",
     tex_neighbor  VARCHAR(16) NOT NULL COMMENT "ip del vecino",
-    tex_router_id VARCHAR(15) NOT NULL COMMENT "ID",
     tex_as VARCHAR(15) NOT NULL COMMENT "AS del BGP",
 	tex_datagram_rcvd VARCHAR(30) NOT NULL COMMENT "Paquetes recibidos",
     tex_datagram_sent VARCHAR(30) NOT NULL COMMENT "Paquetes enviados",
+    tim_time_up TIME COMMENT "Hora levantado",
 	tim_date TIMESTAMP DEFAULT NOW() NOT NULL COMMENT "Fecha en que se verificó el status de los vecinos"
 
 )COMMENT "Log de conexión para los vecinos BGP";

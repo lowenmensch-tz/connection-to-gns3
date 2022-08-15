@@ -1,6 +1,7 @@
 #which python3
 
 from ExportDataSQL.run import ExportDataSQL
+from LogBGP.run import run
 from FormatData.run import bgp, devices, ports
 
 # @author=kenneth.cruz@unah.hn
@@ -8,9 +9,7 @@ from FormatData.run import bgp, devices, ports
 # @date=2022/08/15
 
 
-
-if __name__ == "__main__":
-    
+def populate_db():
     #Data
     tbl_devices = devices()
     tbl_ports = ports()
@@ -23,3 +22,13 @@ if __name__ == "__main__":
     export.insert_data_in_tblbgp(tbl_bgp)
     export.insert_data_in_tblbgp_neighbors(tbl_bgp_neighbors)
     export.insert_data_in_tblbgp_network(tbl_bgp_network)
+
+
+def log_bgp():
+    #populate_db()
+    run()
+    
+
+
+if __name__ == "__main__":
+    log_bgp()
