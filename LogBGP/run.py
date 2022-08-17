@@ -2,7 +2,7 @@ from LogBGP.export_data_gns3 import ExportDataGNS3
 from LogBGP.format_data_gns3 import format_bgp_command
 from LogBGP.export_data_to_sql import insert_data_in_tbllog_bgp_peer_connectivity
 from Engine.config_connection import ConfigConnection
-from ExtractData.get_data_all_devices_by_ip import GetDataAllDevicesByIP
+from ExtractData.get_data_gns3_by_ip import GetDataGns3ByIP
 
 # @author=kenneth.cruz@unah.hn
 # @version=0.1.0
@@ -26,7 +26,7 @@ def run():
         '192.178.0.5'
     ]
 
-    router = GetDataAllDevicesByIP(config, hosts)
+    router = GetDataGns3ByIP(config, hosts)
     gns3 = (ExportDataGNS3(router)).show_bgp_summary()
     tbl_bgp_log = format_bgp_command()
     insert_data_in_tbllog_bgp_peer_connectivity(tbl_bgp_log)
